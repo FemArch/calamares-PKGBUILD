@@ -21,10 +21,10 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
 source+=("$pkgname-$pkgver.tar.gz::$url/v$pkgver/calamares-$pkgver.tar.gz")
-sha256sums=('2ce0320b95d296c8d9fb0c7b63b207d9f107c301fc7fdbe286660b57985a5f44')
+sha256sums=('200ef4c2742f16937dc4ae9937b2dc02879294be9a3ef74d5d4ee679fd76193b')
 
 prepare() {
-	cd ${srcdir}  #/calamares-${pkgver}
+	cd ${srcdir}/calamares-${pkgver}
   sed -i -e 's/"Install configuration files" OFF/"Install configuration files" ON/' CMakeLists.txt
 	
 	# change version
@@ -39,7 +39,7 @@ prepare() {
 }
 
 build() {
-	cd ${srcdir} #/calamares-${pkgver}
+	cd ${srcdir}/calamares-${pkgver}
 
 	mkdir -p build
 	cd build
