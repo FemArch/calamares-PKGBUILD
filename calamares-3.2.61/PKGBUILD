@@ -8,7 +8,7 @@ _commit=7f3d3746e16fd12f7e87e5ebe7acc30fd692711b
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
-url="https://github.com/calamares/calamares/releases/download"
+url="https://github.com/FemArch/calamares-femarch/releases/download"
 license=('LGPL')
 depends=('kconfig' 'kcoreaddons' 'kiconthemes' 'ki18n' 'kio' 'solid' 'yaml-cpp' 'kpmcore>=22.04.0' 'mkinitcpio-openswap'
          'boost-libs' 'ckbcomp' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gtk-update-icon-cache' 'plasma-framework'
@@ -21,11 +21,11 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
 source+=("$pkgname-$pkgver.tar.gz::$url/v$pkgver/calamares-$pkgver.tar.gz")
-sha256sums=('7591b9b60738bdba7b9de2b8da5462ab21006db06a006f0dd21ac5b832711dd2')
+sha256sums=('2ce0320b95d296c8d9fb0c7b63b207d9f107c301fc7fdbe286660b57985a5f44')
 
 prepare() {
-	cd ${srcdir}/calamares-${pkgver}
-	sed -i -e 's/"Install configuration files" OFF/"Install configuration files" ON/' CMakeLists.txt
+	cd ${srcdir}  #/calamares-${pkgver}
+  sed -i -e 's/"Install configuration files" OFF/"Install configuration files" ON/' CMakeLists.txt
 	
 	# change version
 	sed -i -e "s|$pkgver|$_pkgver|g" CMakeLists.txt
@@ -39,7 +39,7 @@ prepare() {
 }
 
 build() {
-	cd ${srcdir}/calamares-${pkgver}
+	cd ${srcdir} #/calamares-${pkgver}
 
 	mkdir -p build
 	cd build
