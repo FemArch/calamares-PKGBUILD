@@ -1,7 +1,7 @@
 # Maintainer: Kenny Strawn <Kenny[dot]Strawn[at]gmail[dot]com>
 
-pkgname=calamares-git
-pkgver=3.2.55.r9930.c70deed13
+pkgname=calamares
+pkgver=.r10492.bfa46d326
 pkgrel=1
 pkgdesc='Distribution-independent installer framework (development version)'
 arch=('i686' 'x86_64')
@@ -30,7 +30,7 @@ sha256sums=(
 )
 
 pkgver() {
-	cd ${srcdir}/calamares
+	cd ${srcdir}/calamares-femarch
 	_ver="$(cat CMakeLists.txt | grep -m3 -e "  VERSION" | grep -o "[[:digit:]]*" | xargs | sed s'/ /./g')"
 	_git=".r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 	printf '%s%s' "${_ver}" "${_git}"
@@ -41,7 +41,7 @@ pkgver() {
 }
 
 prepare() {
-	cd ${srcdir}/calamares
+	cd ${srcdir}/calamares-femarch
 	sed -i -e 's/"Install configuration files" OFF/"Install configuration files" ON/' CMakeLists.txt
 
 	git apply ../yay-support.patch
@@ -49,7 +49,7 @@ prepare() {
 
 
 build() {
-	cd ${srcdir}/calamares
+	cd ${srcdir}/calamares-femarch
 
 	mkdir -p build
 	cd build
@@ -67,7 +67,7 @@ build() {
 }
 
 package() {
-	cd ${srcdir}/calamares/build
+	cd ${srcdir}/calamares-femarch/build
 	make DESTDIR="$pkgdir" install
 
 	# rename services-systemd back to services
